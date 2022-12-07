@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddScoped<ICatalogContext, CatalogContext>(); // this line means when asp.net see this
                                                                // automatically will create CatalogContext when it 
                                                                //sees ICatalogContext

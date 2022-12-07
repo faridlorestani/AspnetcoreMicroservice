@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    image: mongo
+    
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/Catalog.Api/Dockerfile
+
+volumes: #to keep and save some data in case image is changed ot deleted or whatever tha data is not  lost,in this case to keep our data on mongodb safe
+  mongo_data: 

@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    container_name: catalogdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db 
+  catalog.api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://catalogdb:27017"  #should be defined to override tha value in appsetting json because in docker container we only know about contaiers
+    depends_on: # indicates that this container is depended on other containers to run
+      - catalogdb
+    ports:
+      - "8000:80"  #we forward container port 80 to 8000 port on our localhost
