@@ -17,6 +17,7 @@ namespace Basket.Api.Controllers
         }
 
         [HttpGet("{userName}", Name = "GetShoppingCart")]
+        [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> GetShoppingCart(string userName)
         {
             var basket = await _repository.GetShoppingCart(userName);
@@ -24,7 +25,7 @@ namespace Basket.Api.Controllers
         }
 
         [HttpPut]
-        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateShoppingCart([FromBody] ShoppingCart shoppingCart)
         {
             return Ok(await _repository.UpdateShoppingCart(shoppingCart));
@@ -32,7 +33,7 @@ namespace Basket.Api.Controllers
 
         [HttpDelete("{userName}", Name = "DeleteShoppingCart")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ShoppingCart>> DeleteShoppingCart(string userName)
+        public async Task<ActionResult<bool>> DeleteShoppingCart(string userName)
         {
             await _repository.DeleteShoppingCart(userName);
             return Ok();
