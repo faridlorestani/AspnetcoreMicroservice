@@ -23,7 +23,7 @@ namespace Discount.Api.Controllers
             return Ok(coupon);
         }
 
-        [HttpPut]
+        [HttpPost]
         [ProducesResponseType(typeof(Coupon), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Coupon>> CreateDiscount([FromBody] Coupon coupon)
         {
