@@ -28,8 +28,15 @@ services:
       context: .
       dockerfile: Services/Basket/Basket.Api/Dockerfile
 
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.Api/Dockerfile
+
 volumes: #to keep and save some data in case image is changed ot deleted or whatever tha data is not  lost,in this case to keep our data on mongodb safe
   mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:
+
